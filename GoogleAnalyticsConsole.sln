@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAnalyticsConsole", "GoogleAnalyticsConsole\GoogleAnalyticsConsole.csproj", "{C7B7087D-21B6-40B0-9BEC-72DDF7106C5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandingPagesMVC", "LandingPagesMVC\LandingPagesMVC.csproj", "{62DC57D0-ACE7-4E1F-9353-09B4FF8F3023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExitPagesMVC", "ExitPagesMVC\ExitPagesMVC.csproj", "{4280A1F6-4B05-442D-B1F0-B4F55E63F753}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C7B7087D-21B6-40B0-9BEC-72DDF7106C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7B7087D-21B6-40B0-9BEC-72DDF7106C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7B7087D-21B6-40B0-9BEC-72DDF7106C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62DC57D0-ACE7-4E1F-9353-09B4FF8F3023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DC57D0-ACE7-4E1F-9353-09B4FF8F3023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62DC57D0-ACE7-4E1F-9353-09B4FF8F3023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62DC57D0-ACE7-4E1F-9353-09B4FF8F3023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4280A1F6-4B05-442D-B1F0-B4F55E63F753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4280A1F6-4B05-442D-B1F0-B4F55E63F753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4280A1F6-4B05-442D-B1F0-B4F55E63F753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4280A1F6-4B05-442D-B1F0-B4F55E63F753}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

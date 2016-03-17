@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQtoSQLlandingpg">
+  <DataContextMoniker Name="/LINQtoSQLlandingpgDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8cf27482-ce5c-4cd9-ade2-28ad24e27a6c" absoluteBounds="5.25, 2, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/LINQtoSQLlandingpgDataContext/LandingPagestaging" />
+      <nestedChildShapes>
+        <elementListCompartment Id="98e771f6-370a-4834-a4a4-260a579ae914" absoluteBounds="5.265, 2.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

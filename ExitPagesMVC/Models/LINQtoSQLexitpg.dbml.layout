@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQtoSQLexitpg">
+  <DataContextMoniker Name="/LINQtoSQLexitpgDataContext" />
+  <nestedChildShapes>
+    <classShape Id="bab5539a-8826-4832-8c06-1a61d0abf3ef" absoluteBounds="6.25, 1.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/StagingExitPage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0c18b035-1777-46fd-acd4-dfb37e9f5074" absoluteBounds="6.265, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
