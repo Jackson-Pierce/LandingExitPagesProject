@@ -2,7 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=athena;Initial Catalog=JPStarter;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="JPStarterConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="staging.LandingPages" Member="LandingPagestagings">
     <Type Name="LandingPagestaging">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="LandingPage" Storage="_LandingPage1" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
       <Column Name="Sessions" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="SessionRate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -13,6 +13,16 @@
       <Column Name="Transactions" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Revenue" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="EcommerceConversionRate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LoadedFile_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LoadedFile_LandingPagestaging" Member="LoadedFile" ThisKey="LoadedFile_id" OtherKey="id" Type="LoadedFile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoadedFiles" Member="LoadedFiles">
+    <Type Name="LoadedFile">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="filename" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="filetype" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="LoadedFile_LandingPagestaging" Member="LandingPagestagings" ThisKey="id" OtherKey="LoadedFile_id" Type="LandingPagestaging" />
     </Type>
   </Table>
 </Database>

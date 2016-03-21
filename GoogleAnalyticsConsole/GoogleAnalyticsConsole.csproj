@@ -35,6 +35,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExitPagesMVC\ExitPagesMVC.csproj">
+      <Project>{4280a1f6-4b05-442d-b1f0-b4f55e63f753}</Project>
+      <Name>ExitPagesMVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LandingPagesMVC\LandingPagesMVC.csproj">
+      <Project>{62dc57d0-ace7-4e1f-9353-09b4ff8f3023}</Project>
+      <Name>LandingPagesMVC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

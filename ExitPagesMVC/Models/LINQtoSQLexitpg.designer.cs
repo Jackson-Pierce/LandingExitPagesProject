@@ -30,6 +30,9 @@ namespace ExitPagesMVC.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertLoadedFile(LoadedFile instance);
+    partial void UpdateLoadedFile(LoadedFile instance);
+    partial void DeleteLoadedFile(LoadedFile instance);
     partial void InsertStagingExitPage(StagingExitPage instance);
     partial void UpdateStagingExitPage(StagingExitPage instance);
     partial void DeleteStagingExitPage(StagingExitPage instance);
@@ -65,12 +68,158 @@ namespace ExitPagesMVC.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<LoadedFile> LoadedFiles
+		{
+			get
+			{
+				return this.GetTable<LoadedFile>();
+			}
+		}
+		
 		public System.Data.Linq.Table<StagingExitPage> StagingExitPages
 		{
 			get
 			{
 				return this.GetTable<StagingExitPage>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoadedFiles")]
+	public partial class LoadedFile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _filename;
+		
+		private string _filetype;
+		
+		private EntitySet<StagingExitPage> _StagingExitPages;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnfilenameChanging(string value);
+    partial void OnfilenameChanged();
+    partial void OnfiletypeChanging(string value);
+    partial void OnfiletypeChanged();
+    #endregion
+		
+		public LoadedFile()
+		{
+			this._StagingExitPages = new EntitySet<StagingExitPage>(new Action<StagingExitPage>(this.attach_StagingExitPages), new Action<StagingExitPage>(this.detach_StagingExitPages));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_filename", DbType="VarChar(1000)")]
+		public string filename
+		{
+			get
+			{
+				return this._filename;
+			}
+			set
+			{
+				if ((this._filename != value))
+				{
+					this.OnfilenameChanging(value);
+					this.SendPropertyChanging();
+					this._filename = value;
+					this.SendPropertyChanged("filename");
+					this.OnfilenameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_filetype", DbType="VarChar(255)")]
+		public string filetype
+		{
+			get
+			{
+				return this._filetype;
+			}
+			set
+			{
+				if ((this._filetype != value))
+				{
+					this.OnfiletypeChanging(value);
+					this.SendPropertyChanging();
+					this._filetype = value;
+					this.SendPropertyChanged("filetype");
+					this.OnfiletypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoadedFile_ExitPage", Storage="_StagingExitPages", ThisKey="id", OtherKey="LoadedFile_id")]
+		public EntitySet<StagingExitPage> StagingExitPages
+		{
+			get
+			{
+				return this._StagingExitPages;
+			}
+			set
+			{
+				this._StagingExitPages.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_StagingExitPages(StagingExitPage entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoadedFile = this;
+		}
+		
+		private void detach_StagingExitPages(StagingExitPage entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoadedFile = null;
 		}
 	}
 	
@@ -90,6 +239,10 @@ namespace ExitPagesMVC.Models
 		
 		private string _ExitRate;
 		
+		private System.Nullable<int> _LoadedFile_id;
+		
+		private EntityRef<LoadedFile> _LoadedFile;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -104,10 +257,13 @@ namespace ExitPagesMVC.Models
     partial void OnPageViewsChanged();
     partial void OnExitRateChanging(string value);
     partial void OnExitRateChanged();
+    partial void OnLoadedFile_idChanging(System.Nullable<int> value);
+    partial void OnLoadedFile_idChanged();
     #endregion
 		
 		public StagingExitPage()
 		{
+			this._LoadedFile = default(EntityRef<LoadedFile>);
 			OnCreated();
 		}
 		
@@ -151,7 +307,7 @@ namespace ExitPagesMVC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Exits", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Exits", DbType="VarChar(3000)")]
 		public string Exits
 		{
 			get
@@ -171,7 +327,7 @@ namespace ExitPagesMVC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PageViews", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PageViews", DbType="VarChar(3000)")]
 		public string PageViews
 		{
 			get
@@ -191,7 +347,7 @@ namespace ExitPagesMVC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExitRate", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExitRate", DbType="VarChar(3000)")]
 		public string ExitRate
 		{
 			get
@@ -207,6 +363,64 @@ namespace ExitPagesMVC.Models
 					this._ExitRate = value;
 					this.SendPropertyChanged("ExitRate");
 					this.OnExitRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoadedFile_id", DbType="Int")]
+		public System.Nullable<int> LoadedFile_id
+		{
+			get
+			{
+				return this._LoadedFile_id;
+			}
+			set
+			{
+				if ((this._LoadedFile_id != value))
+				{
+					if (this._LoadedFile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoadedFile_idChanging(value);
+					this.SendPropertyChanging();
+					this._LoadedFile_id = value;
+					this.SendPropertyChanged("LoadedFile_id");
+					this.OnLoadedFile_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoadedFile_ExitPage", Storage="_LoadedFile", ThisKey="LoadedFile_id", OtherKey="id", IsForeignKey=true)]
+		public LoadedFile LoadedFile
+		{
+			get
+			{
+				return this._LoadedFile.Entity;
+			}
+			set
+			{
+				LoadedFile previousValue = this._LoadedFile.Entity;
+				if (((previousValue != value) 
+							|| (this._LoadedFile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LoadedFile.Entity = null;
+						previousValue.StagingExitPages.Remove(this);
+					}
+					this._LoadedFile.Entity = value;
+					if ((value != null))
+					{
+						value.StagingExitPages.Add(this);
+						this._LoadedFile_id = value.id;
+					}
+					else
+					{
+						this._LoadedFile_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LoadedFile");
 				}
 			}
 		}

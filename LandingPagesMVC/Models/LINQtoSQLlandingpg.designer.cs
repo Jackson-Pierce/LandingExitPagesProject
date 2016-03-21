@@ -33,6 +33,9 @@ namespace LandingPagesMVC.Models
     partial void InsertLandingPagestaging(LandingPagestaging instance);
     partial void UpdateLandingPagestaging(LandingPagestaging instance);
     partial void DeleteLandingPagestaging(LandingPagestaging instance);
+    partial void InsertLoadedFile(LoadedFile instance);
+    partial void UpdateLoadedFile(LoadedFile instance);
+    partial void DeleteLoadedFile(LoadedFile instance);
     #endregion
 		
 		public LINQtoSQLlandingpgDataContext() : 
@@ -72,6 +75,14 @@ namespace LandingPagesMVC.Models
 				return this.GetTable<LandingPagestaging>();
 			}
 		}
+		
+		public System.Data.Linq.Table<LoadedFile> LoadedFiles
+		{
+			get
+			{
+				return this.GetTable<LoadedFile>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="staging.LandingPages")]
@@ -102,6 +113,10 @@ namespace LandingPagesMVC.Models
 		
 		private string _EcommerceConversionRate;
 		
+		private System.Nullable<int> _LoadedFile_id;
+		
+		private EntityRef<LoadedFile> _LoadedFile;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -128,14 +143,17 @@ namespace LandingPagesMVC.Models
     partial void OnRevenueChanged();
     partial void OnEcommerceConversionRateChanging(string value);
     partial void OnEcommerceConversionRateChanged();
+    partial void OnLoadedFile_idChanging(System.Nullable<int> value);
+    partial void OnLoadedFile_idChanged();
     #endregion
 		
 		public LandingPagestaging()
 		{
+			this._LoadedFile = default(EntityRef<LoadedFile>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int id
 		{
 			get
@@ -355,6 +373,64 @@ namespace LandingPagesMVC.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoadedFile_id", DbType="Int")]
+		public System.Nullable<int> LoadedFile_id
+		{
+			get
+			{
+				return this._LoadedFile_id;
+			}
+			set
+			{
+				if ((this._LoadedFile_id != value))
+				{
+					if (this._LoadedFile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoadedFile_idChanging(value);
+					this.SendPropertyChanging();
+					this._LoadedFile_id = value;
+					this.SendPropertyChanged("LoadedFile_id");
+					this.OnLoadedFile_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoadedFile_LandingPagestaging", Storage="_LoadedFile", ThisKey="LoadedFile_id", OtherKey="id", IsForeignKey=true)]
+		public LoadedFile LoadedFile
+		{
+			get
+			{
+				return this._LoadedFile.Entity;
+			}
+			set
+			{
+				LoadedFile previousValue = this._LoadedFile.Entity;
+				if (((previousValue != value) 
+							|| (this._LoadedFile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LoadedFile.Entity = null;
+						previousValue.LandingPagestagings.Remove(this);
+					}
+					this._LoadedFile.Entity = value;
+					if ((value != null))
+					{
+						value.LandingPagestagings.Add(this);
+						this._LoadedFile_id = value.id;
+					}
+					else
+					{
+						this._LoadedFile_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LoadedFile");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -373,6 +449,144 @@ namespace LandingPagesMVC.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoadedFiles")]
+	public partial class LoadedFile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _filename;
+		
+		private string _filetype;
+		
+		private EntitySet<LandingPagestaging> _LandingPagestagings;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnfilenameChanging(string value);
+    partial void OnfilenameChanged();
+    partial void OnfiletypeChanging(string value);
+    partial void OnfiletypeChanged();
+    #endregion
+		
+		public LoadedFile()
+		{
+			this._LandingPagestagings = new EntitySet<LandingPagestaging>(new Action<LandingPagestaging>(this.attach_LandingPagestagings), new Action<LandingPagestaging>(this.detach_LandingPagestagings));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_filename", DbType="VarChar(1000)")]
+		public string filename
+		{
+			get
+			{
+				return this._filename;
+			}
+			set
+			{
+				if ((this._filename != value))
+				{
+					this.OnfilenameChanging(value);
+					this.SendPropertyChanging();
+					this._filename = value;
+					this.SendPropertyChanged("filename");
+					this.OnfilenameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_filetype", DbType="VarChar(255)")]
+		public string filetype
+		{
+			get
+			{
+				return this._filetype;
+			}
+			set
+			{
+				if ((this._filetype != value))
+				{
+					this.OnfiletypeChanging(value);
+					this.SendPropertyChanging();
+					this._filetype = value;
+					this.SendPropertyChanged("filetype");
+					this.OnfiletypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoadedFile_LandingPagestaging", Storage="_LandingPagestagings", ThisKey="id", OtherKey="LoadedFile_id")]
+		public EntitySet<LandingPagestaging> LandingPagestagings
+		{
+			get
+			{
+				return this._LandingPagestagings;
+			}
+			set
+			{
+				this._LandingPagestagings.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LandingPagestagings(LandingPagestaging entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoadedFile = this;
+		}
+		
+		private void detach_LandingPagestagings(LandingPagestaging entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoadedFile = null;
 		}
 	}
 }

@@ -2,11 +2,24 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQtoSQLlandingpg">
   <DataContextMoniker Name="/LINQtoSQLlandingpgDataContext" />
   <nestedChildShapes>
-    <classShape Id="8cf27482-ce5c-4cd9-ade2-28ad24e27a6c" absoluteBounds="5.25, 2, 2, 2.9247054036458331">
+    <classShape Id="4b466ce7-2c12-42a5-9f43-b8adfb1b6637" absoluteBounds="1.5, 2.125, 2, 3.1170068359375">
       <DataClassMoniker Name="/LINQtoSQLlandingpgDataContext/LandingPagestaging" />
       <nestedChildShapes>
-        <elementListCompartment Id="98e771f6-370a-4834-a4a4-260a579ae914" absoluteBounds="5.265, 2.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d42322c0-f33c-4fdd-be9b-d42328793078" absoluteBounds="1.5150000000000001, 2.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="93e936b8-f376-4810-acaf-38252453c6ee" absoluteBounds="1.5, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LINQtoSQLlandingpgDataContext/LoadedFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7b570282-3b70-4ca7-bc9b-70a787d36df1" absoluteBounds="1.5150000000000001, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.8862939453125); (2.5 : 2.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LINQtoSQLlandingpgDataContext/LoadedFile/LoadedFile_LandingPagestaging" />
+      <nodes>
+        <classShapeMoniker Id="93e936b8-f376-4810-acaf-38252453c6ee" />
+        <classShapeMoniker Id="4b466ce7-2c12-42a5-9f43-b8adfb1b6637" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

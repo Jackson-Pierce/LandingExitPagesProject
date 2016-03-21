@@ -2,11 +2,24 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQtoSQLexitpg">
   <DataContextMoniker Name="/LINQtoSQLexitpgDataContext" />
   <nestedChildShapes>
-    <classShape Id="bab5539a-8826-4832-8c06-1a61d0abf3ef" absoluteBounds="6.25, 1.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/StagingExitPage" />
+    <classShape Id="fc2e06b7-0cb5-4496-84c5-c530cbc12467" absoluteBounds="6.875, 1.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/LoadedFile" />
       <nestedChildShapes>
-        <elementListCompartment Id="0c18b035-1777-46fd-acd4-dfb37e9f5074" absoluteBounds="6.265, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="82929507-437d-4072-9f31-e7e26f56a954" absoluteBounds="6.8900000000000006, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="3f8b510f-2ae7-4907-8f4c-13ef67bb3268" absoluteBounds="5.25, 2.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/StagingExitPage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dd0e4397-ddd0-48c5-8c72-6dd6815d06a4" absoluteBounds="5.265, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.0625 : 2.6362939453125); (7.0625 : 2.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LINQtoSQLexitpgDataContext/LoadedFile/LoadedFile_ExitPage" />
+      <nodes>
+        <classShapeMoniker Id="fc2e06b7-0cb5-4496-84c5-c530cbc12467" />
+        <classShapeMoniker Id="3f8b510f-2ae7-4907-8f4c-13ef67bb3268" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
