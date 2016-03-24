@@ -10,31 +10,47 @@ namespace LandingPagesMVC.Controllers
 {
     public class ImportLandingPagesController : Controller
     {
-        // This Class will sort through a directory and import all files that
-        // haven't been imported for the Google Analytics Landing Pages.
-        public static void LandingPgSetup()
+        public ActionResult Index()
         {
-            string filename = (@"C:\IncomingAnalytics\LandingPages\LandingPages03142016pg1.csv");
-            ImportLandingPagesController.LandingPgImportBatching(filename);
-            string directory = (@"C:\IncomingAnalytics\LandingPages");
-            ImportLandingPagesController.LandingPgFilesToBeImported(directory);
+            LandingPgFilesToBeImported();
+
+            return View();
         }
-        public static void LandingPgImportBatching(string filename)
+        public static void LandingPgFilesToBeImported()
+        {
+            List<Tuple<string, int>> filenameid = new List<Tuple<string, int>>();
+            using (LINQtoSQLlandingpgDataContext db = new LINQtoSQLlandingpgDataContext())
+            {
+                List<vw_FilesNotYetLoaded> unloadedfiles = db.vw_FilesNotYetLoadeds.ToList();
+
+                foreach (vw_FilesNotYetLoaded fileid in unloadedfiles)
+                {
+                    if (fileid.filetype.Equals("Landing Page"))
+                    {
+                        Tuple<string, int> notloaded = new Tuple<string, int>(fileid.filename, fileid.ID);
+                        filenameid.Add(notloaded);
+                    }
+                } // end of loop
+                foreach (Tuple<string, int> fileinfo in filenameid)
+                {
+                    LandingPgImport(fileinfo.Item1, fileinfo.Item2);
+                }
+            }
+        }
+
+        public static void LandingPgImport(string filename, int loadedFile_id)
         {
             using (LINQtoSQLlandingpgDataContext db = new LINQtoSQLlandingpgDataContext())
             {
-                List<string> AllLines = System.IO.File.ReadAllLines(filename).
-                    Skip(7).
-                    ToList();
+                List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
+                List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
 
-                int batchsize = 5000;
-                for (int i = 0; i <= AllLines.Count / batchsize; i++)
+                foreach (string line in linesIneed)
                 {
-                    var batchitems = AllLines.Skip(i * batchsize).Take(batchsize).ToList();
-                    foreach (string line in batchitems)
+                    string[] info = line.Split(',');
+                    if (!info[0].Equals(""))
                     {
-                        string[] info = line.Split(',');
-                        LandingPagestaging keyword = new LandingPagestaging();
+                        stagingLandingPage keyword = new stagingLandingPage();
                         keyword.LandingPage = info[0];
                         keyword.Sessions = info[1];
                         keyword.SessionRate = info[2];
@@ -45,40 +61,13 @@ namespace LandingPagesMVC.Controllers
                         keyword.Transactions = info[7];
                         keyword.Revenue = info[8];
                         keyword.EcommerceConversionRate = info[9];
+                        keyword.LoadedFile_id = loadedFile_id;
 
-                        db.LandingPagestagings.InsertOnSubmit(keyword);
-                    } // End of foreach loop
-                } // End of For loop
-                db.SubmitChanges();
-            } // End of Using statement
-        }
-        public static List<String> LandingPgFilesToBeImported(string directory)
-        {
-            {
-                List<String> filepaths = Directory.GetFiles(directory, "*.csv").ToList();
-                using (LINQtoSQLlandingpgDataContext db = new LINQtoSQLlandingpgDataContext())
-                {
-                    List<LoadedFile> keywords = db.LoadedFiles.ToList();
-                    List<String> fileName = new List<string>();
-
-                    foreach (LoadedFile keyword in keywords)
-                    {
-                        fileName.Add(keyword.filename);
+                        db.stagingLandingPages.InsertOnSubmit(keyword);
                     }
-                    List<String> fileDifference = filepaths.Except(fileName).ToList();
-
-                    return fileDifference;
-                } //End of using statement
+                } // End of foreach loop
+                db.SubmitChanges();
             }
-        }
-        public static List<String> LandingPgImportUnimportedFiles(string directory)
-        {
-            List<string> filenames = LandingPgFilesToBeImported(directory).ToList();
-            foreach (string filename in filenames)
-            {
-                LandingPgImportBatching(filename);
-            }
-            return null;
         }
     }
 }

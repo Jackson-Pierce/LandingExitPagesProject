@@ -2,24 +2,17 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LINQtoSQLexitpg">
   <DataContextMoniker Name="/LINQtoSQLexitpgDataContext" />
   <nestedChildShapes>
-    <classShape Id="fc2e06b7-0cb5-4496-84c5-c530cbc12467" absoluteBounds="6.875, 1.25, 2, 1.3862939453125">
-      <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/LoadedFile" />
-      <nestedChildShapes>
-        <elementListCompartment Id="82929507-437d-4072-9f31-e7e26f56a954" absoluteBounds="6.8900000000000006, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3f8b510f-2ae7-4907-8f4c-13ef67bb3268" absoluteBounds="5.25, 2.75, 2, 1.9631982421875">
+    <classShape Id="1b0666c2-8ee1-45f8-b0aa-7edbe23202f5" absoluteBounds="5.875, 2.75, 2, 1.9631982421875">
       <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/StagingExitPage" />
       <nestedChildShapes>
-        <elementListCompartment Id="dd0e4397-ddd0-48c5-8c72-6dd6815d06a4" absoluteBounds="5.265, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="da438c5e-f7cb-42ca-a361-46b45c5ef0a6" absoluteBounds="5.89, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.0625 : 2.6362939453125); (7.0625 : 2.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/LINQtoSQLexitpgDataContext/LoadedFile/LoadedFile_ExitPage" />
-      <nodes>
-        <classShapeMoniker Id="fc2e06b7-0cb5-4496-84c5-c530cbc12467" />
-        <classShapeMoniker Id="3f8b510f-2ae7-4907-8f4c-13ef67bb3268" />
-      </nodes>
-    </associationConnector>
+    <classShape Id="a625ea41-46f7-47aa-9040-94cab6736f85" absoluteBounds="8, 1.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LINQtoSQLexitpgDataContext/vw_FilesNotYetLoaded" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9802c64b-b909-4bbe-9d4f-a9bbb8ea87f3" absoluteBounds="8.015, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
