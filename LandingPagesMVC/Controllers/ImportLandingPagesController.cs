@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using LandingPagesMVC.Models;
+using Microsoft.VisualBasic.FileIO;
 
 namespace LandingPagesMVC.Controllers
 {
@@ -42,32 +43,37 @@ namespace LandingPagesMVC.Controllers
         {
             using (LINQtoSQLlandingpgDataContext db = new LINQtoSQLlandingpgDataContext())
             {
-                List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
-                List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
-
-                foreach (string line in linesIneed)
+                // List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
+                // List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
+                TextFieldParser parser = new TextFieldParser(filename);
+                parser.SetDelimiters(",");
+                parser.HasFieldsEnclosedInQuotes = true;
+                
+                while (!parser.EndOfData)
                 {
-                    string[] info = line.Split(',');
-                    if (!info[0].Equals(""))
+                    string[] fields = parser.ReadFields();
+
+                    if (fields[0].IndexOf("/").Equals(0))
                     {
                         stagingLandingPage keyword = new stagingLandingPage();
-                        keyword.LandingPage = info[0];
-                        keyword.Sessions = info[1];
-                        keyword.SessionRate = info[2];
-                        keyword.NewUsers = info[3];
-                        keyword.BounceRate = info[4];
-                        keyword.PagesSession = info[5];
-                        keyword.AvgSessionDuration = info[6];
-                        keyword.Transactions = info[7];
-                        keyword.Revenue = info[8];
-                        keyword.EcommerceConversionRate = info[9];
+                        keyword.LandingPage1 = fields[0];
+                        keyword.Sessions = fields[1];
+                        keyword.SessionRate = fields[2];
+                        keyword.NewUsers = fields[3];
+                        keyword.BounceRate = fields[4];
+                        keyword.PagesSession = fields[5];
+                        keyword.AvgSessionDuration = fields[6];
+                        keyword.Transactions = fields[7];
+                        keyword.Revenue = fields[8];
+                        keyword.EcommerceConversionRate = fields[9];
                         keyword.LoadedFile_id = loadedFile_id;
 
-                        db.stagingLandingPages.InsertOnSubmit(keyword);
-                    }
-                } // End of foreach loop
+                        db.stagingLandingPages.InsertOnSubmit(keyword);                       
+                    }                
+                } // End of While loop
                 db.SubmitChanges();
+                parser.Close();
             }
-        }
+        } // end of LandingPgImport
     }
 }

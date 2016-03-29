@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ExitPagesMVC.Models;
 using System.IO;
+using Microsoft.VisualBasic.FileIO;
 
 namespace ExitPagesMVC.Controllers
 {
@@ -46,26 +47,31 @@ namespace ExitPagesMVC.Controllers
         public static void ExitPgImport(string filename, int loadedFile_id)
         {
             using (LINQtoSQLexitpgDataContext db = new LINQtoSQLexitpgDataContext())
-            {                              
-                List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
-                List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
+            {
+                // List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
+                // List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
+                TextFieldParser parser = new TextFieldParser(filename);
+                parser.SetDelimiters(",");
+                parser.HasFieldsEnclosedInQuotes = true;
 
-                    foreach (string line in linesIneed)
+                while (!parser.EndOfData)
+                {
+                    string[] fields = parser.ReadFields();
+
+                    if (fields[0].IndexOf("/").Equals(0))
                     {
-                        string[] info = line.Split(',');
-                        if (!info[0].Equals(""))
-                        {
-                            StagingExitPage keyword = new StagingExitPage();
-                            keyword.Page = info[0];
-                            keyword.Exits = info[1];
-                            keyword.PageViews = info[2];
-                            keyword.ExitRate = info[3];
-                            keyword.LoadedFile_id = loadedFile_id;
+                        StagingExitPage keyword = new StagingExitPage();
+                        keyword.Page = fields[0];
+                        keyword.Exits = fields[1];
+                        keyword.PageViews = fields[2];
+                        keyword.ExitRate = fields[3];
+                        keyword.LoadedFile_id = loadedFile_id;
 
-                            db.StagingExitPages.InsertOnSubmit(keyword);
-                        }
-                    } // End of foreach loop
+                        db.StagingExitPages.InsertOnSubmit(keyword);
+                    }
+                } // End of While loop
                 db.SubmitChanges();
+                parser.Close();
             }              
          }
     }        

@@ -153,7 +153,7 @@ namespace LandingPagesMVC.Models
 		
 		private int _id;
 		
-		private string _LandingPage;
+		private string _LandingPage1;
 		
 		private string _Sessions;
 		
@@ -181,8 +181,8 @@ namespace LandingPagesMVC.Models
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnLandingPageChanging(string value);
-    partial void OnLandingPageChanged();
+    partial void OnLandingPage1Changing(string value);
+    partial void OnLandingPage1Changed();
     partial void OnSessionsChanging(string value);
     partial void OnSessionsChanged();
     partial void OnSessionRateChanging(string value);
@@ -230,22 +230,22 @@ namespace LandingPagesMVC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LandingPage", DbType="VarChar(8000)")]
-		public string LandingPage
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="LandingPage", Storage="_LandingPage1", DbType="VarChar(8000)")]
+		public string LandingPage1
 		{
 			get
 			{
-				return this._LandingPage;
+				return this._LandingPage1;
 			}
 			set
 			{
-				if ((this._LandingPage != value))
+				if ((this._LandingPage1 != value))
 				{
-					this.OnLandingPageChanging(value);
+					this.OnLandingPage1Changing(value);
 					this.SendPropertyChanging();
-					this._LandingPage = value;
-					this.SendPropertyChanged("LandingPage");
-					this.OnLandingPageChanged();
+					this._LandingPage1 = value;
+					this.SendPropertyChanged("LandingPage1");
+					this.OnLandingPage1Changed();
 				}
 			}
 		}
