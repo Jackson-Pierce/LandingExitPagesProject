@@ -56,7 +56,7 @@ namespace LandingPagesMVC.Controllers
                     if (fields[0].IndexOf("/").Equals(0))
                     {
                         stagingLandingPage keyword = new stagingLandingPage();
-                        keyword.LandingPage1 = fields[0];
+                        keyword.LandingPage = fields[0];
                         keyword.Sessions = fields[1];
                         keyword.SessionRate = fields[2];
                         keyword.NewUsers = fields[3];

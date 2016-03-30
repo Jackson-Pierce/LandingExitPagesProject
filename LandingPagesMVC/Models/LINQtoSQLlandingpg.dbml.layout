@@ -14,5 +14,17 @@
         <elementListCompartment Id="3960e71d-f9c9-4d4f-8211-324c28005b27" absoluteBounds="3.89, 3.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="67bcac09-61db-4da6-aa8b-9a75caa265c9" absoluteBounds="0.875, 3.375, 2, 3.1170068359375">
+      <DataClassMoniker Name="/LINQtoSQLlandingpgDataContext/vwNetsuiteWeekReportLandingPage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="03678f0c-9ea9-4054-a401-ab5e5fd65d0d" absoluteBounds="0.89000000000000012, 3.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b5589831-3122-4cc0-9344-555054a87be7" absoluteBounds="0.5, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/LINQtoSQLlandingpgDataContext/vwCampaignWeekReportLandingPage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="389ad068-2a5e-46a6-aa49-ecaaab154365" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

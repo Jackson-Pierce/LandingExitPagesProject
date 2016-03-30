@@ -23,4 +23,33 @@
       <Column Name="LoadedFile_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vwNetsuiteWeekReportLandingPages" Member="vwNetsuiteWeekReportLandingPages">
+    <Type Name="vwNetsuiteWeekReportLandingPage">
+      <Column Name="SumOfSessions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewSessions" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SumOfNewUsers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SumOfTransactions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Bounces" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PagesViewed" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Manufacturer" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="CleanSKU" Type="System.String" DbType="NVarChar(2500)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Loadedfile_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="netsuiteid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwCampaignWeekReportLandingPages" Member="vwCampaignWeekReportLandingPages">
+    <Type Name="vwCampaignWeekReportLandingPage">
+      <Column Name="SumOfSessions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewSessions" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SumOfNewUsers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SumOfTransactions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Bounces" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PagesViewed" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="campaign" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Loadedfile_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="campaignid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

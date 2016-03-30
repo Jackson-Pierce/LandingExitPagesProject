@@ -80,6 +80,22 @@ namespace LandingPagesMVC.Models
 				return this.GetTable<stagingLandingPage>();
 			}
 		}
+		
+		public System.Data.Linq.Table<vwNetsuiteWeekReportLandingPage> vwNetsuiteWeekReportLandingPages
+		{
+			get
+			{
+				return this.GetTable<vwNetsuiteWeekReportLandingPage>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vwCampaignWeekReportLandingPage> vwCampaignWeekReportLandingPages
+		{
+			get
+			{
+				return this.GetTable<vwCampaignWeekReportLandingPage>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vw_FilesNotYetLoaded")]
@@ -153,7 +169,7 @@ namespace LandingPagesMVC.Models
 		
 		private int _id;
 		
-		private string _LandingPage1;
+		private string _LandingPage;
 		
 		private string _Sessions;
 		
@@ -181,8 +197,8 @@ namespace LandingPagesMVC.Models
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void OnLandingPage1Changing(string value);
-    partial void OnLandingPage1Changed();
+    partial void OnLandingPageChanging(string value);
+    partial void OnLandingPageChanged();
     partial void OnSessionsChanging(string value);
     partial void OnSessionsChanged();
     partial void OnSessionRateChanging(string value);
@@ -230,22 +246,22 @@ namespace LandingPagesMVC.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="LandingPage", Storage="_LandingPage1", DbType="VarChar(8000)")]
-		public string LandingPage1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LandingPage", DbType="VarChar(8000)")]
+		public string LandingPage
 		{
 			get
 			{
-				return this._LandingPage1;
+				return this._LandingPage;
 			}
 			set
 			{
-				if ((this._LandingPage1 != value))
+				if ((this._LandingPage != value))
 				{
-					this.OnLandingPage1Changing(value);
+					this.OnLandingPageChanging(value);
 					this.SendPropertyChanging();
-					this._LandingPage1 = value;
-					this.SendPropertyChanged("LandingPage1");
-					this.OnLandingPage1Changed();
+					this._LandingPage = value;
+					this.SendPropertyChanged("LandingPage");
+					this.OnLandingPageChanged();
 				}
 			}
 		}
@@ -467,6 +483,402 @@ namespace LandingPagesMVC.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vwNetsuiteWeekReportLandingPages")]
+	public partial class vwNetsuiteWeekReportLandingPage
+	{
+		
+		private System.Nullable<int> _SumOfSessions;
+		
+		private System.Nullable<double> _NewSessions;
+		
+		private System.Nullable<int> _SumOfNewUsers;
+		
+		private System.Nullable<int> _SumOfTransactions;
+		
+		private System.Nullable<double> _Bounces;
+		
+		private System.Nullable<double> _PagesViewed;
+		
+		private string _Manufacturer;
+		
+		private string _CleanSKU;
+		
+		private string _Category;
+		
+		private string _DisplayName;
+		
+		private System.Nullable<int> _Loadedfile_id;
+		
+		private string _netsuiteid;
+		
+		public vwNetsuiteWeekReportLandingPage()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumOfSessions", DbType="Int")]
+		public System.Nullable<int> SumOfSessions
+		{
+			get
+			{
+				return this._SumOfSessions;
+			}
+			set
+			{
+				if ((this._SumOfSessions != value))
+				{
+					this._SumOfSessions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewSessions", DbType="Float")]
+		public System.Nullable<double> NewSessions
+		{
+			get
+			{
+				return this._NewSessions;
+			}
+			set
+			{
+				if ((this._NewSessions != value))
+				{
+					this._NewSessions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumOfNewUsers", DbType="Int")]
+		public System.Nullable<int> SumOfNewUsers
+		{
+			get
+			{
+				return this._SumOfNewUsers;
+			}
+			set
+			{
+				if ((this._SumOfNewUsers != value))
+				{
+					this._SumOfNewUsers = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumOfTransactions", DbType="Int")]
+		public System.Nullable<int> SumOfTransactions
+		{
+			get
+			{
+				return this._SumOfTransactions;
+			}
+			set
+			{
+				if ((this._SumOfTransactions != value))
+				{
+					this._SumOfTransactions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bounces", DbType="Float")]
+		public System.Nullable<double> Bounces
+		{
+			get
+			{
+				return this._Bounces;
+			}
+			set
+			{
+				if ((this._Bounces != value))
+				{
+					this._Bounces = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PagesViewed", DbType="Float")]
+		public System.Nullable<double> PagesViewed
+		{
+			get
+			{
+				return this._PagesViewed;
+			}
+			set
+			{
+				if ((this._PagesViewed != value))
+				{
+					this._PagesViewed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Manufacturer", DbType="NVarChar(128)")]
+		public string Manufacturer
+		{
+			get
+			{
+				return this._Manufacturer;
+			}
+			set
+			{
+				if ((this._Manufacturer != value))
+				{
+					this._Manufacturer = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CleanSKU", DbType="NVarChar(2500)")]
+		public string CleanSKU
+		{
+			get
+			{
+				return this._CleanSKU;
+			}
+			set
+			{
+				if ((this._CleanSKU != value))
+				{
+					this._CleanSKU = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="NVarChar(150)")]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this._Category = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayName", DbType="NVarChar(128)")]
+		public string DisplayName
+		{
+			get
+			{
+				return this._DisplayName;
+			}
+			set
+			{
+				if ((this._DisplayName != value))
+				{
+					this._DisplayName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loadedfile_id", DbType="Int")]
+		public System.Nullable<int> Loadedfile_id
+		{
+			get
+			{
+				return this._Loadedfile_id;
+			}
+			set
+			{
+				if ((this._Loadedfile_id != value))
+				{
+					this._Loadedfile_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_netsuiteid", DbType="NVarChar(50)")]
+		public string netsuiteid
+		{
+			get
+			{
+				return this._netsuiteid;
+			}
+			set
+			{
+				if ((this._netsuiteid != value))
+				{
+					this._netsuiteid = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vwCampaignWeekReportLandingPages")]
+	public partial class vwCampaignWeekReportLandingPage
+	{
+		
+		private System.Nullable<int> _SumOfSessions;
+		
+		private System.Nullable<double> _NewSessions;
+		
+		private System.Nullable<int> _SumOfNewUsers;
+		
+		private System.Nullable<int> _SumOfTransactions;
+		
+		private System.Nullable<double> _Bounces;
+		
+		private System.Nullable<double> _PagesViewed;
+		
+		private string _campaign;
+		
+		private System.Nullable<int> _Loadedfile_id;
+		
+		private string _campaignid;
+		
+		public vwCampaignWeekReportLandingPage()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumOfSessions", DbType="Int")]
+		public System.Nullable<int> SumOfSessions
+		{
+			get
+			{
+				return this._SumOfSessions;
+			}
+			set
+			{
+				if ((this._SumOfSessions != value))
+				{
+					this._SumOfSessions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewSessions", DbType="Float")]
+		public System.Nullable<double> NewSessions
+		{
+			get
+			{
+				return this._NewSessions;
+			}
+			set
+			{
+				if ((this._NewSessions != value))
+				{
+					this._NewSessions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumOfNewUsers", DbType="Int")]
+		public System.Nullable<int> SumOfNewUsers
+		{
+			get
+			{
+				return this._SumOfNewUsers;
+			}
+			set
+			{
+				if ((this._SumOfNewUsers != value))
+				{
+					this._SumOfNewUsers = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SumOfTransactions", DbType="Int")]
+		public System.Nullable<int> SumOfTransactions
+		{
+			get
+			{
+				return this._SumOfTransactions;
+			}
+			set
+			{
+				if ((this._SumOfTransactions != value))
+				{
+					this._SumOfTransactions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bounces", DbType="Float")]
+		public System.Nullable<double> Bounces
+		{
+			get
+			{
+				return this._Bounces;
+			}
+			set
+			{
+				if ((this._Bounces != value))
+				{
+					this._Bounces = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PagesViewed", DbType="Float")]
+		public System.Nullable<double> PagesViewed
+		{
+			get
+			{
+				return this._PagesViewed;
+			}
+			set
+			{
+				if ((this._PagesViewed != value))
+				{
+					this._PagesViewed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_campaign", DbType="VarChar(255)")]
+		public string campaign
+		{
+			get
+			{
+				return this._campaign;
+			}
+			set
+			{
+				if ((this._campaign != value))
+				{
+					this._campaign = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Loadedfile_id", DbType="Int")]
+		public System.Nullable<int> Loadedfile_id
+		{
+			get
+			{
+				return this._Loadedfile_id;
+			}
+			set
+			{
+				if ((this._Loadedfile_id != value))
+				{
+					this._Loadedfile_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_campaignid", DbType="NVarChar(50)")]
+		public string campaignid
+		{
+			get
+			{
+				return this._campaignid;
+			}
+			set
+			{
+				if ((this._campaignid != value))
+				{
+					this._campaignid = value;
+				}
 			}
 		}
 	}
