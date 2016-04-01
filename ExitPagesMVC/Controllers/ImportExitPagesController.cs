@@ -9,11 +9,13 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace ExitPagesMVC.Controllers
 {
-    //Notes for Thursday:
-    // 1. db.vwFilesNotYetLoadeds for some reason is adding everyline
-    // 2. make sure the import is getting the right Tuple set (item1 for filename and item2 for FK id)
-
-
+    /// <summary>
+    /// -This MVC Controller Imports Google Analytics Exit Pages data, that has yet to be imported into the Database.
+    /// -It checks what has already been imported by referencing the view "vw_FilesNotYetLoaded.
+    /// -You manually insert the file path and file name into the table JPStarter.dbo.LoadedFiles to generate a Primary Key id #.
+    /// -The method will reference the file path and ID # to be inserted into the table by using a Tuple.
+    /// -TextFieldParser inserts all strings one at a time, while checking for quotes on each comma.
+    /// </summary>
     public class ImportExitPagesController : Controller
     {
         public ActionResult Index()
@@ -36,20 +38,17 @@ namespace ExitPagesMVC.Controllers
                         Tuple<string, int> notloaded = new Tuple<string, int>(fileid.filename , fileid.ID);
                         filenameid.Add(notloaded);
                     }
-                } // end of loop
+                } // End of loop
                 foreach (Tuple<string, int> fileinfo in filenameid)
                 {
                     ExitPgImport(fileinfo.Item1, fileinfo.Item2);
-                }
-            }
-        }    
-
+                } // End of loop
+            } // End of using statement
+        }
         public static void ExitPgImport(string filename, int loadedFile_id)
         {
             using (LINQtoSQLexitpgDataContext db = new LINQtoSQLexitpgDataContext())
             {
-                // List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
-                // List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
                 TextFieldParser parser = new TextFieldParser(filename);
                 parser.SetDelimiters(",");
                 parser.HasFieldsEnclosedInQuotes = true;
@@ -72,7 +71,7 @@ namespace ExitPagesMVC.Controllers
                 } // End of While loop
                 db.SubmitChanges();
                 parser.Close();
-            }              
+            } // End of Using statement      
          }
     }        
 }

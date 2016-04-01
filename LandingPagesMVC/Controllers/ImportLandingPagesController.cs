@@ -9,6 +9,13 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace LandingPagesMVC.Controllers
 {
+    /// <summary>
+    /// -This MVC Controller Imports Google Analytics Landing Pages data, that has yet to be imported into the Database.
+    /// -It checks what has already been imported by referencing the view "vw_FilesNotYetLoaded.
+    /// -You manually insert the file path and file name into the table JPStarter.dbo.LoadedFiles to generate a Primary Key id #.
+    /// -The method will reference the file path and ID # to be inserted into the table by using a Tuple.
+    /// -TextFieldParser inserts all strings one at a time, while checking for quotes on each comma.
+    /// </summary>
     public class ImportLandingPagesController : Controller
     {
         public ActionResult Index()
@@ -31,11 +38,11 @@ namespace LandingPagesMVC.Controllers
                         Tuple<string, int> notloaded = new Tuple<string, int>(fileid.filename, fileid.ID);
                         filenameid.Add(notloaded);
                     }
-                } // end of loop
+                } // End of loop
                 foreach (Tuple<string, int> fileinfo in filenameid)
                 {
                     LandingPgImport(fileinfo.Item1, fileinfo.Item2);
-                }
+                } // End of loop
             }
         }
 
@@ -43,8 +50,6 @@ namespace LandingPagesMVC.Controllers
         {
             using (LINQtoSQLlandingpgDataContext db = new LINQtoSQLlandingpgDataContext())
             {
-                // List<string> allLines = System.IO.File.ReadAllLines(filename).ToList();
-                // List<string> linesIneed = allLines.Where(line => line.IndexOf("/").Equals(0)).ToList();
                 TextFieldParser parser = new TextFieldParser(filename);
                 parser.SetDelimiters(",");
                 parser.HasFieldsEnclosedInQuotes = true;
@@ -73,7 +78,7 @@ namespace LandingPagesMVC.Controllers
                 } // End of While loop
                 db.SubmitChanges();
                 parser.Close();
-            }
-        } // end of LandingPgImport
+            } // End of Using statement
+        } // End of LandingPgImport
     }
 }
